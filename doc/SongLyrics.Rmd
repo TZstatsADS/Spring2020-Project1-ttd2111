@@ -1,10 +1,10 @@
 ---
-title: 'Pop and Metal: What are the differences between them?'
+title: 'Pop vs Metal: What are the differences in their lyrical changes and their sentiment?'
 author: "Tram Duong"
 output:
+  html_notebook: default
   html_document:
     df_print: paged
-  html_notebook: default
   pdf_document: default
 ---
 
@@ -13,7 +13,7 @@ output:
 
 #### This report is a guidebook with selected Q&A aims at finding out the insights and differences between Pop and Metal.
 
-#### The whole dataset: "lyrics.Rdata" is a filtered corpus of 380,000+ song lyrics from from MetroLyrics. You can read more about it on [Kaggle](https://www.kaggle.com/gyani95/380000-lyrics-from-metrolyrics). "info_artist.csv" provides the background information of all the artistis. These information are scraped from [LyricsFreak](https://www.lyricsfreak.com/).
+#### The whole dataset: "lyrics.Rdata" is a filtered corpus of 380,000+ song lyrics from MetroLyrics. You can read more about it on [Kaggle](https://www.kaggle.com/gyani95/380000-lyrics-from-metrolyrics). "info_artist.csv" provides the background information of all the artists. This information is scraped from [LyricsFreak](https://www.lyricsfreak.com/).
 
 
 ```{r, warning=FALSE, message=FALSE,echo=FALSE}
@@ -74,12 +74,11 @@ dt_artist <- fread('../data/artists.csv')
 
 ## Question 1:  What are the music trends of Pop and Metal in general? Is pop really more positive than metal? 
 
-In music industry, there have been always a comparision between pop and metal over their mainstream opposite, from the artists to their performance styles, from the lyrics to the rthyme. They also have very different types of fan who dislike the other genre a lot. 
+In the music industry, there has always been a comparison between pop and metal since they are polar opposites. From the artists  and their performance styles to the lyrics and the rhythm, these genres do not have much in common. Furthermore, they also have very different types of fans who take pride in the genre they prefer and have a disdain for the other. 
 
+I have always been curious about the differences between pop and metal music. As we all know, pop music is usually known as more emotional, romantic, and soft while metal music tends to be more intense, virtuosic, and powerful. I feel like this difference would be interesting to compare the two totally different definitions and styles of genres to see if there are any insights we could learn more about. 
 
-I have always been curious about the differences between pop and metal music. As we all know, pop music is usually known as more emotional, romantic, and soft while metal music tends to be more intense, virtuosic, and powerful. I feel like this would be a great comparision between two totally different definitions and styles of genres to see if there are any insights we could learn more. 
-
-I start with general ideas of how both of the genres have done historically through total number of songs and artists. 
+I started with the general idea of how both of the genres have performed historically through their total number of songs and artists. 
 
 
 ```{r,echo=FALSE}
@@ -133,9 +132,9 @@ ggplot(data = temp1, aes(x = decade, y = songs)) +
          axis.text.x = element_blank())
 ```
 
-According to the above charts, pop music began earlier than metal music because pop started since 1970s. Furthermore, pop music did not only start earlier, but also was more active at the early stage. Both of the genres increased rapidly the number of songs and artists within 2000s.Even thoguh they both seemed decreasing a lot in 2010s, it can not be concluded that they have been less active due to the lastest year of the dataset is 2016. 
+According to the above charts, pop music began earlier than metal music and started in the 1970s. Furthermore, pop music did not only start earlier, but also was more active during its early stage. Both of the genres rapidly increased the number of songs and artists in the genre beginning in the 2000s.Even though they both seemed to decrease greatly in the 2010s, it can not be concluded that they have been less active due to the latest year of the dataset being 2016. 
 
-To have a better general understanding of the nature in both genres, I try to figure out the top most used words of each genre. The two separates word clouds are showing the most used words in pop and metal respectively. 
+To have a better general understanding of the nature in both genres, I tried to figure out the most used words in each genre. The two separate word clouds show the most used words in pop and metal respectively.
 
 
 ```{r, warning=FALSE, message=FALSE,echo=FALSE}
@@ -186,11 +185,12 @@ wordcloud(word_count_metal_song$word,word_count_metal_song$n,
 ```
 
 
-As we can see above, Pop genre mostly used softer emotion words (love, baby, time, heart, ill, etc.), especially the word "love" has been used a lot more than the other most used words in the genre which results in larger size and darker color of the word "love" than otherw words in the cloud. In constract, even though metal genre has positive words (live, love, dream), it has more used darker words comparing to pop (fear, lost, dead, burn, dies, dark, etc.). Also, the used word frequency of metal genre are close to each other as the metal word cloud shows a lot of words used and the size and color of these words are not much different. 
+As we can see above, the Pop genre mostly uses softer emotion words (love, baby, time, heart, ill, etc.). The word "love" especially was used far greater than the other most used words in the genre, resulting in its larger size and darker color compared to other words in the cloud. In contrast, even though the metal genre has positive words (live, love, dream), it has used more dark words compared to pop (fear, lost, dead, burn, dies, dark, etc.). Also, the frequency of words used in the metal genre is closer to each other as the metal word cloud shows a great variety of words and the size and color of these words are similar. 
 
-## Question 2: Who are the hardest working artists in these genres? Did they follow the trends? Or did they write their music with their own style? 
+## Question 2: Who are the hardest working artists in these genres? Did they follow the trends? Or did they write their music using their own style? 
 
-In order to have a deeper understanding of the genres, I consider the hardest working artists of pop and metal by counting the total number of songs per artist in each genre and showing the result of top ten most prolific artists of all time in both. 
+In order to have a deeper understanding of the genres, I consider the hardest working artists of pop and metal by counting the total number of songs per artist in each genre and showing the result of the top ten most prolific artists of all time in both. 
+
 
 ```{r,message=FALSE,warning=FALSE,echo=FALSE}
 temp2 <- count(dt_lyrics, genre, artist, sort = TRUE) %>% 
@@ -209,7 +209,7 @@ ggplot(temp2, aes(artist, n))+
 ``` 
 
 
-For pop genre, Bee Gees has the highest total number of songs (almost 600 songs) and Barbra Streisand is only a little bit below the first. The number 10th on the list goes to Gary Numan with about 230 songs.
+For the pop genre, the Bee Gees have the highest total number of songs (almost 600 songs) and Barbra Streisand is only a little bit below the first. The 10th artist on the list goes to Gary Numan with about 230 songs.
 
 ```{r,message=FALSE,warning=FALSE,echo=FALSE}
 temp3 <- count(dt_lyrics, genre, artist, sort = TRUE) %>% 
@@ -227,13 +227,13 @@ ggplot(temp3, aes(artist, n))+
       coord_flip()
 ``` 
 
-For metal genre, Fall has the highest total number of songs (about 300 songs) and have a far distance compare to the other artists in the chart above. The number 10th does to Acid Drinkers with about 110 songs. 
+For the metal genre, Fall has the highest total number of songs (about 300 songs) and has a far greater distance compared to other artists in the chart above. The 10th artist is Acid Drinkers with about 110 songs. 
 
 
-Overall, with the given dataset, the most prolific artists in pop genre is more active than metal genre's. The number one in the most prolific chart for pop genre has produced about two times more than the number one in metal. Furthermore, the number 10th in pop genre also has produced about two times more than the number 10th in metal. 
+Overall, with the given dataset, the most prolific artists in the pop genre are more active than the metal genre. The most prolific artist in the pop genre has produced about two times as many songs as the number one artist in metal. Furthermore, the 10th artist in pop also has produced about two times the number that the 10th artist in metal has. 
 
 
-Now it is interesting to see if these most prolific artists had followed the trends of their genre. I used the word clouds to show the most used words by these artists and see if there are any differences compare to their genre in general. 
+Now, it is interesting to see if these most prolific artists followed the trends of their genre. I used the word clouds to show the most used words by these artists and see if there are any differences compared to the general themes of their genre. 
 
 
 ```{r, warning=FALSE, message=FALSE,echo=FALSE}
@@ -263,8 +263,7 @@ wordcloud(word_count_pop_song_artist$word,word_count_pop_song_artist$n,
           colors=brewer.pal(9,"Blues"))
 ```
 
-For pop genre, the artists used the word "blame" the most while in genreal, the word "love" was used most in the genre. Even though "love" was still used a lot in the genre, these artists have used vocabularies wisely with more emotions, such as miss, pain, cry, lie, broke, etc. Therefore, the most prolific pop artists did not seem following the general music genre, but more into their own styles and express different emotions in their songs. 
-
+For the pop genre, the artists used the word "blame" the most while in general the word "love" was used most. Even though "love" was still very often, these top artists have used vocabularies with more varied emotions, such as “miss”, “pain”, “cry”, “lie””, “broke”, etc. Therefore, the most prolific pop artists did not seem to follow the music genre in general, but tended to create their own styles and express different emotions in their songs.
 
 
 ```{r, warning=FALSE, message=FALSE,echo=FALSE}
@@ -294,15 +293,16 @@ wordcloud(word_count_metal_song_artist$word,word_count_metal_song_artist$n,
           colors=brewer.pal(9,"Greens"))
 ```
 
-For metal genre, the artists used the top three words (life, time, youre) as the same like its the genre. However, it looks like the artists also used more on some words that were not used a lot in genre (beat, slip, insides, path, leave, inside) and new words (avantasia). Therefore, the metal artists's song lyrics seem more following to the trends of the genre than pop, but these artists are also have their creativity and different emotion impression in their lyrics.
+For the metal genre, the top artists used the top three words (life, time, youre) similar to the genre as a whole. However, it looks like the artists also used a greater variety of words that were not used a lot in the genre (beat, slip, insides, path, leave) and new words (avantasia). Therefore, the metal artist's song lyrics seem to follow the trends of the genre more closely than pop, but these artists also have their own creativity and different emotional impressions in their lyrics.
 
 ## Question 3: How did the sentiments in Pop and Metal change over the decades and how do they compare to each other?
 
-From the figures above, we know how both genres are in general. Besides the msot used words in general, it would be more informative to see how these genres have changed over decade using sentiments analysis. 
+From the figures above, we know how both genres are in general. Besides the most used words in general, it would be more informative to see how these genres have changed over the decades using sentiment analysis. 
 
-In this question, I would like to see how the sentiments using the bing sentiment lexion: "The bing emotion is a list of English words and their associations with three basic emotions (negative, positive, neutral)."
+In this question, I would like to see how the sentiments differ using the bing sentiment lexicon. From the package’s description,  "The bing emotion is a list of English words and their associations with three basic emotions (negative, positive, neutral)."
 
-Let's start with Pop genre
+Let's begin with the Pop genre.
+
 
 ```{r,message=FALSE,warning=FALSE,include=FALSE}
 
@@ -381,9 +381,10 @@ suppressWarnings(print(plt1))
 
 ![ ](../figs/Pop.png)
 
-According to the figure above, pop music has not changed much in neutral and positive sentimentssince 1970s. In these two sentiments, the word clouds of each decade show similar most used words. However, in the negative sentiment, the most used words in lyrics were different from each decade. For example, the top three most useds word in negative sentiment in 1970s are "burn", "lost", "lonely" while the top three most used words in 1980s are "cry", "falling", "fall". Also, in 2010s, some cursing words are used more in pop genre. 
+According to the figure above, pop music has not changed much in neutral and positive sentiment since the 1970s to the 2010s. In these two sentiments, the word clouds of each decade show similar lists of most used words. However, in the negative sentiment, the most used words were different from each decade. For example, the top three most used words with negative sentiments in the 1970s are "burn", "lost", and "lonely", while the top three most used words in the 1980s are "cry", "falling", and "fall". Also, in the 2010s, some curse words began to be used more often in the genre.
 
-Now, let's take a look at Metal genre. 
+
+Now, let's take a look at the Metal genre.
 
 
 ```{r,message=FALSE,warning=FALSE,include=FALSE}
@@ -466,13 +467,13 @@ suppressWarnings(print(plt1))
 
 ![ ](../figs/Metal.png)
 
-In metal genre, the positive sentiment is changed a lot and becomes more simplified after 1980s. As we can see, there are more vocabularies used in 1980s, and love was not used mostly there. This result can be because of the early stage of the genre, where there were not a lot of metal songs and artists. Since 1990, the positive sentitments of each decade are pretty much similar in metal.
+In the metal genre, the positive sentiment is changed often  and becomes more simplified after the 1980s. As we can see, there are greater variations in vocabulary in the 1980s, and “love” was not used very often. This result can be because of the early stages of the genre, where there were not a lot of metal songs and artists. Since 1990, the positive sentiments of each decade are fairly similar in metal.
 
-The negative sentiment of metal genre shows that there are more and more vocabularies used and the words used are pretty much similar over time. Besides using intense words, this genre also has a large uses of cursing words. 
+The negative sentiment of metal shows that there is an increasing number of vocabulary used with the words being relatively similar over time. Besides using intense words, this genre also uses many curse words. 
 
-So how pop music and metal music compare to each othe over time: 
+So how do pop and metal music compare to each over time? 
 
-In comparision, pop music has very simple words used in positive and neutral sentiments, but more diversity and emtionality in negative sentiment while metal music has also simple but more number of words used in positive and neutral sentiment, but similarity of meanings in negative sentiment. Furthermore, metal music used more heavy, intense, and darker words in their lyrics. 
+In comparison, pop music has very simple words used in positive and neutral sentiments, but has greater diversity and emotionality in negative sentiments. Conversely, metal also has simple words, but with a far greater variety in positive and neutral sentiments, but are fairly similar in the negative sentiment. Furthermore, metal music used more heavy, intense, and darker words in their lyrics. 
 
 
 ![ ](../figs/PopvsMetal1.png)
@@ -481,11 +482,11 @@ In comparision, pop music has very simple words used in positive and neutral sen
 
 ## Conclusions
 
-1. In general, pop genre is more active comparing to metal genre with larger amount of songs and artists per decace. Furthermore, pop lyrics use more soft emotion words in their lyrics and do not have a lot of heavy intense words in their songs. Metal lyrics also have some positive words in their songs, but not as much compare to darker words. 
+1. In general, the pop genre is more active compared to the metal genre with more songs and artists per decade. Furthermore, pop lyrics use more soft emotion words in their lyrics and do not have a lot of heavy, intense words in their songs. Metal lyrics also have some positive words in their songs, but tend to use darker words more frequently. 
 
-2. The most prolific artists groups of both genres do have their own styles in their songs. They do not follow the genres' trends  as much. 
+2. The most prolific artists for each genre did create their own styles in their songs. They did not follow the trends of the genres as much, but varied their word use and moved away from the general trends. 
 
-3. Historically, pop and metal music has similar frequency of used words in all three sentiments (positive, neutral, and negative). They both also used more word in negative sentiments. However, the metal music has more intense, darker, heavy words in their lyrics.  
+3. Historically, pop and metal music had similar frequency of words used in all three sentiments (positive, neutral, and negative). However, they both had greater diversity of words in the negative sentiment. Also, metal music had more intense, darker, and heavy words in their lyrics. In the 2010s, some curse words began to be used more often in pop, while they had always been present in metal historically.
 
 
 
