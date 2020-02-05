@@ -2,7 +2,7 @@
 ## Spring 2020
 ## Project 1: Pop vs Metal: What are the differences in their lyrics?
 
-<img src="figs/PopvsMetal.png>
+![image](figs/PopvsMetal.png)
 
 ### [Project Description](doc/)
 This is the first and only *individual* (as opposed to *team*) this semester. 
