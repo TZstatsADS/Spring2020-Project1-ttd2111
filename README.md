@@ -9,7 +9,7 @@ This is the first and only *individual* (as opposed to *team*) this semester.
 
 Term: Spring 2020
 
-+ Project title: "Pop vs Metal: What are the differences in their lyrical changes and their sentiment?"
++ Project title: Pop vs Metal: What are the differences in their lyrical changes and their sentiment?
 + This project is conducted by Tram Duong
 
 + Project summary: This report is a guidebook with selected Q&A aims at finding out the insights and differences between Pop and Metal
